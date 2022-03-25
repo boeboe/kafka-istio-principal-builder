@@ -4,14 +4,25 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>tetrate</groupId>
+  <groupId>io.tetrate</groupId>
   <artifactId>kafka-istio</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Kafka Istio Principal Builder</description>
+  <url>https://github.com/boeboe/kafka-istio-principal-builder</url>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+  <scm>
+    <connection>scm:git:${project.scm.url}</connection>
+    <developerConnection>scm:git:${project.scm.url}</developerConnection>
+    <url>git@github.com:boeboe/kafka-istio-principal-builder.git</url>
+    <tag>HEAD</tag>
+  </scm>
 
   <dependencies>
     <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka -->
@@ -55,7 +66,7 @@
         <artifactId>maven-deploy-plugin</artifactId>
         <version>2.7</version>
         <configuration>
-          <skip>true</skip>
+          <skip>false</skip>
         </configuration>
       </plugin>
       <plugin>
@@ -73,6 +84,16 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>de.jutzig</groupId>
+        <artifactId>github-release-plugin</artifactId>
+        <version>1.4.0</version>
+        <configuration>
+          <description>Kafka Istio Principal Builder v${project.version}</description>
+          <releaseName>v${project.version}</releaseName>
+          <tag>${project.version}</tag>
+        </configuration>
       </plugin>
     </plugins>
   </build>
